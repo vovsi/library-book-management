@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1= title
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    form(method='POST', action='/publishers/add')
+        div.form-group.row
+            label.col-sm-2.col-form-label Name
+            div.col-sm-10
+                input.form-control(type='text', placeholder='Name', name='name')
+            label.col-sm-2.col-form-label Address
+            div.col-sm-10
+                input.form-control(type='text', placeholder='Address', name='address')
+            label.col-sm-2.col-form-label Phone
+            div.col-sm-10
+                input.form-control(type='text', placeholder='Phone', name='phone')
+        input.btn.btn-success(type='submit', value='Add')
+

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1= title
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    form(method='POST', action='/authors/add')
+        div.form-group.row
+            label.col-sm-2.col-form-label FirstName
+            div.col-sm-10
+                input.form-control(type='text', placeholder='FirstName', name='firstName')
+            label.col-sm-2.col-form-label LastName
+            div.col-sm-10
+                input.form-control(type='text', placeholder='LastName', name='lastName')
+            label.col-sm-2.col-form-label MiddleName
+            div.col-sm-10
+                input.form-control(type='text', placeholder='MiddleName', name='middleName')
+        input.btn.btn-success(type='submit', value='Add')
+

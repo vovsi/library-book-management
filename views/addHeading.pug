@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1= title
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    form(method='POST', action='/headings/add')
+        div.form-group.row
+            label.col-sm-2.col-form-label Name
+            div.col-sm-10
+                input.form-control(type='text', placeholder='Name', name='name')
+            label.col-sm-2.col-form-label Heading parent
+            div.col-sm-10
+                select.form-control(name='parentHeading')
+                    option(value='-') -
+                    - for(let heading of headings){
+                        option(value=heading.id)= heading.name
+                    -}
+        input.btn.btn-success(type='submit', value='Add')
+

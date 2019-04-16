@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    h1= title
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    script(src="/javascripts/checkFileSize.js", language="JavaScript", type="text/javascript")
+    form(method='POST', action='/add', enctype="multipart/form-data")
+        div.form-group.row
+            label.col-sm-2.col-form-label Name
+            div.col-sm-10
+                input.form-control(type='text', placeholder='Name', name='name')
+            label.col-sm-2.col-form-label DatePublishing
+            div.col-sm-10
+                input.form-control(type='date', name='datePublishing')
+            label.col-sm-2.col-form-label Publisher
+            div.col-sm-10
+                select.form-control(name='publisher')
+                    - for(let publisher of publishers){
+                        option(value=publisher.id)= publisher.name
+                    -}
+            label.col-sm-2.col-form-label Heading
+            div.col-sm-10
+                select.form-control(name='heading')
+                    - for(let heading of headings){
+                        option(value=heading.id)= heading.name
+                    -}
+            label.col-sm-2.col-form-label Authors
+            div.col-sm-10
+                select.form-control(name='authors', multiple)
+                    - for(let author of authors){
+                        option(value=author.id)= author.first_name + ' ' + author.last_name + ' ' + author.middle_name
+                    -}
+            label.col-sm-2.col-form-label Images
+            div.col-sm-10
+                input.form-control(type='file', name='images', multiple, accept="image/*,image/jpeg")
+        input.btn.btn-success(type='submit', value='Add')
+

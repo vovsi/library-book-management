@@ -1,0 +1,65 @@
+extends layout
+
+block content
+    h1= title
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    script(src="/javascripts/checkFileSize.js", language="JavaScript", type="text/javascript")
+    form(method='POST', action='/update/'+id, enctype="multipart/form-data")
+        div.form-group.row
+            label.col-sm-2.col-form-label Name
+            div.col-sm-10
+                input.form-control(type='text', placeholder='Name', name='name', value=name)
+            label.col-sm-2.col-form-label DatePublishing
+            div.col-sm-10
+                input.form-control(type='date', name='datePublishing', value=datePublishing)
+            label.col-sm-2.col-form-label Publisher
+            div.col-sm-10
+                select.form-control(name='publisher')
+                    - for(let publisher of publishers){
+                        - if(myPublisher == publisher.id) {
+                            option(value=publisher.id, selected)= publisher.name
+                        -}else{
+                            option(value=publisher.id)= publisher.name
+                        -}
+                    -}
+            label.col-sm-2.col-form-label Heading
+            div.col-sm-10
+                select.form-control(name='heading')
+                    - for(let heading of headings){
+                        - if(myHeading == heading.name){
+                            option(value=heading.id, selected)= heading.name
+                        -}else{
+                            option(value=heading.id)= heading.name
+                        -}
+                    -}
+            label.col-sm-2.col-form-label Authors
+            div.col-sm-10
+                select.form-control(name='authors', multiple)
+                    - for(let author of authors){
+                        - let isMyAuthor = false;
+                        - for(let myAuthor of myAuthors){
+                            - if(myAuthor.id==author.id){
+                                option(value=author.id, selected)= author.first_name + ' ' + author.last_name + ' ' + author.middle_name
+                                - isMyAuthor = true;
+                                - break;
+                            -}
+                        - }
+                        - if(!isMyAuthor){
+                            option(value=author.id)= author.first_name + ' ' + author.last_name + ' ' + author.middle_name
+                        - }
+                    -}
+            label.col-sm-2.col-form-label Images (reset)
+            div.col-sm-10
+                input(type='checkbox', id='isSaveOldImages', name='isSaveOldImages', style='margin-top: 6px', checked)
+                label(for='isSaveOldImages') Save old images?
+                input.form-control(type='file', name='images', multiple, accept="image/*,image/jpeg")
+            label.col-sm-2.col-form-label(style='color: gray') Current images: 
+            div.col.sm-10
+                - for(let image of myImages) {
+                    img(src=image.base64, style='width: 100px;margin-right: 5px')
+                -}
+                
+        input.btn.btn-success(type='submit', value='Save')
+

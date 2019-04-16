@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    h1= title
+    a(href="/publishers/add", class='btn btn-outline-success', style='width: 100%') Add
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    table.table
+        thead
+            tr
+                th(scope='col') #
+                th(scope='col') Name
+                th(scope='col') Address
+                th(scope='col') Phone
+                th(scope='col') Options
+        tbody
+            - if(publishers){
+                - for(let publisher of publishers){
+                    tr
+                        th(scope='row')= publisher.id
+                        td= publisher.name
+                        td= publisher.address
+                        td= publisher.phone
+                        td
+                            a(href='/publishers/update/'+publisher.id, style='margin-right: 5px').btn.btn-primary Update
+                            a(href='/publishers/delete/'+publisher.id).btn.btn-danger Delete
+                -}
+            -}

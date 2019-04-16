@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1= title
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    hr
+    h3= name
+    hr
+    label Date publishing: 
+        =datePublishing.toLocaleDateString('en-US')
+    hr
+    label Publisher name: 
+        =publisher.name
+    hr
+    label Heading: 
+        =heading
+    hr
+    label Authors: 
+    br
+    - for(let author of authors){
+        label(style='font-style: italic')= author.first_name+' '+author.last_name+' '+author.middle_name
+        br
+    -}
+    hr
+    - for(let image of images){
+        img(src=image.base64, style='height: 350px')
+        br
+        br
+    -}
+    

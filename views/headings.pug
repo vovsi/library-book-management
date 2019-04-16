@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h1= title
+    a(href="/headings/add", class='btn btn-outline-success', style='width: 100%') Add
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    p(style='color: green') Note: If the heading is not deleted - it means it is used!
+
+    table.table
+        thead
+            tr
+                th(scope='col') #
+                th(scope='col') Name
+                th(scope='col') ParentHeadingId
+                th(scope='col') Options
+        tbody
+            - if(headings){
+                - for(let heading of headings){
+                    tr
+                        th(scope='row')= heading.id
+                        td
+                            a(href='/headings?id='+heading.id)= heading.name
+                        td= heading.parent_heading_id
+                        td
+                            a(href='/headings/update/'+heading.id, style='margin-right: 5px').btn.btn-primary Update
+                            a(href='/headings/delete/'+heading.id).btn.btn-danger Delete
+                -}
+            -}

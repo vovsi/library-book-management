@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  a(href="/add", class='btn btn-outline-success', style='width: 100%') Add
+  - if(errors){
+      p(style='color: red')= errors
+  -}
+    table.table
+        thead
+            tr
+                th(scope='col') #
+                th(scope='col') Name
+                th(scope='col') DatePublishing
+                th(scope='col') PublisherId
+                th(scope='col') HeadingId
+                th(scope='col') Options
+        tbody
+            - if(books){
+                - for(let book of books){
+                    tr
+                        th(scope='row')= book.id
+                        td= book.name
+                        td= book.date_publishing.toLocaleDateString('en-US')
+                        td= book.publisher_id
+                        td= book.heading_id
+                        td
+                          a(href='/'+book.id, style='margin-right: 5px').btn.btn-primary Details
+                          a(href='/update/'+book.id, style='margin-right: 5px').btn.btn-primary Update
+                          a(href='/delete/'+book.id).btn.btn-danger Delete
+                -}
+            -}

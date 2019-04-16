@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1= title
+    a(href="/authors/add", class='btn btn-outline-success', style='width: 100%') Add
+    - if(errors){
+        p(style='color: red')= errors
+    -}
+    p(style='color: green') Note: If the author is not deleted - it means it is used!
+
+    table.table
+        thead
+            tr
+                th(scope='col') #
+                th(scope='col') FirstName
+                th(scope='col') LastName
+                th(scope='col') MiddleName
+                th(scope='col') Options
+        tbody
+            - if(authors){
+                - for(let author of authors){
+                    tr
+                        th(scope='row')= author.id
+                        td= author.first_name
+                        td= author.last_name
+                        td= author.middle_name
+                        td
+                            a(href='/authors/update/'+author.id, style='margin-right: 5px').btn.btn-primary Update
+                            a(href='/authors/delete/'+author.id).btn.btn-danger Delete
+                -}
+            -}
+    
