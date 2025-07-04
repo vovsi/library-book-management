@@ -18,7 +18,7 @@ A simple CRUD (Create, Read, Update, Delete) application for managing a library'
 
 1. Clone the repository  
 ```bash
-git clone https://github.com/yourusername/library-book-management.git
+git clone https://github.com/vovsi/library-book-management.git
 ```
 2. Install dependencies
 ```bash
