@@ -13,3 +13,26 @@ A simple CRUD (Create, Read, Update, Delete) application for managing a library'
 
 - Node.js  
 - MySQL
+
+## Installation
+
+1. Clone the repository  
+```bash
+git clone https://github.com/yourusername/library-book-management.git
+```
+2. Install dependencies
+```bash
+npm install
+```
+3. Run the app
+```bash
+npm start
+```
+
+## Usage
+Access the application at http://localhost:3000 
+
+Use the interface to manage the book catalog
+
+## Contributing
+Feel free to open issues or submit pull requests. Any feedback is welcome!
